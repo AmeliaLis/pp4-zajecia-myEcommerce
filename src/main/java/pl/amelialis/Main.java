@@ -12,7 +12,7 @@ public class Main {
         greeter.greet("Jan"); //-> hello kuba
         greeter.greetAllLadies(names);
 
-        List<String> ladies = new ArrayList<String>();
+        List<String> ladies = new ArrayList<>();
         for (String name : names) {
             if (name.endsWith("a")) {
                 ladies.add(name);
