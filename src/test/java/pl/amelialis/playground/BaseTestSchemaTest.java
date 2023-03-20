@@ -1,10 +1,10 @@
-package pl.amelialis;
+package pl.amelialis.playground;
 
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLOutput;
 
-public class FirstTest {
+public class BaseTestSchemaTest {
 
     @Test
     void testIt() {
