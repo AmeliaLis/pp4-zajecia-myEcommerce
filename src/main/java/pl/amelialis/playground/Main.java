@@ -1,4 +1,6 @@
-package pl.amelialis;
+package pl.amelialis.playground;
+
+import pl.amelialis.playground.Greeter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -3,7 +3,6 @@ package pl.amelialis.productcatalog;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,11 +23,10 @@ public class ProductCatalogTest {
         ProductCatalog catalog = thereIsProductCatalog();
         //Act
         String productId = catalog.addProduct("Miś uszatek",
-                "fluffy bear", "image",false,
-                BigDecimal.valueOf(1000),"brown,beige","bear","big");
+                "fluffy bear", "brown","bear","big");
 
         //Assert
-        ArrayList<Product> products = catalog.allProducts();
+        List<Product> products = catalog.allProducts();
         assert 1 == products.size();
     }
 
@@ -37,8 +35,7 @@ public class ProductCatalogTest {
         ProductCatalog catalog = thereIsProductCatalog();
 
         String productId = catalog.addProduct("Miś uszatek",
-                "fluffy bear", "image",false,
-                BigDecimal.valueOf(1000),"brown,beige","bear","big");
+                "fluffy bear", "brown","bear","big");
 
         Product loadedProduct = catalog.loadById(productId);
         assert loadedProduct.getId().equals(productId);
@@ -46,11 +43,10 @@ public class ProductCatalogTest {
 
     @Test
     void itAllowsToChangePrice() {
-        ProductCatalog catalog = new ProductCatalog();
+        ProductCatalog catalog = thereIsProductCatalog();
 
         String id = catalog.addProduct("Miś uszatek",
-                "fluffy bear", "image",false,
-                BigDecimal.valueOf(1000),"brown,beige","bear","big");
+                "fluffy bear", "brown","bear", "big");
 
         catalog.changePriceById(id, BigDecimal.valueOf(49.99));
 
@@ -59,43 +55,55 @@ public class ProductCatalogTest {
 
     @Test
     void itAllowsToAssignImage() {
-        ProductCatalog catalog = new ProductCatalog();
+        ProductCatalog catalog = thereIsProductCatalog();
 
         String id = catalog.addProduct("Miś uszatek",
-                "fluffy bear", "image",false,
-                BigDecimal.valueOf(1000),"brown,beige","bear","big");
+                "fluffy bear", "brown","bear", "big");
 
-        catalog.changeImageById(id,"zdjęcia pluszaka 'Miś Uszatek'");
+        catalog.changeImageById(id,"obrazek.jpg");
 
-        assert catalog.loadById(id).getProductInfo().get("image").equals("zdjęcia pluszaka 'Miś Uszatek'");
+        assertEquals("obrazek.jpg",catalog.loadById(id).getImage());
     }
 
     @Test
+    void itDenyPublicationWithoutImageAndPrice(){
+        ProductCatalog catalog = thereIsProductCatalog();
+        String productId = catalog.addProduct("pies","misiek","pink","bear","enormous");
+
+        assertThrows(ProductCantBePublishedException.class,
+                () -> catalog.publishProduct(productId));
+    }
+    @Test
     void itAllowsToPublishProduct() {
-        ProductCatalog catalog = new ProductCatalog();
+        ProductCatalog catalog = thereIsProductCatalog();
 
-        String id = catalog.addProduct("Miś uszatek",
-                "fluffy bear", "image",false,
-                BigDecimal.valueOf(1000),"brown,beige","bear","big");
+        String productId = catalog.addProduct("Miś uszatek",
+                "fluffy bear", "brown,beige","bear","big");
 
-        catalog.changeVisibilityById(id,true);
+        catalog.changePriceById(productId,BigDecimal.valueOf(17.99));
+        catalog.changeImageById(productId, "obrazek.jpg");
 
-        assert catalog.loadById(id).getProductInfo().get("isPublished").equals(true);
+        catalog.publishProduct(productId);
+
+        List<Product> publishedProducts = catalog.allPublishedProducts();
+        assertDoesNotThrow(() -> catalog.publishProduct(productId));
+        assertEquals(1,publishedProducts.size());
     }
 
     @Test
     void publicationIsPossibleWhenPriceAndImageAreDefined() {
-        ProductCatalog catalog = new ProductCatalog();
+        ProductCatalog catalog = thereIsProductCatalog();
 
         String id = catalog.addProduct("Miś uszatek",
-                "fluffy bear", null,false,
-                null,"brown,beige","bear","big");
+                "fluffy bear", "brown","bear","big");
 
-        assertThrows(ProductImageOrPriceIsNotDefined.class,() -> catalog.changeVisibilityById(id,true));
+        assertThrows(ProductCantBePublishedException.class,() -> catalog.changeVisibilityById(id,true));
     }
 
     private ProductCatalog thereIsProductCatalog() {
-        return new ProductCatalog();
+        return new ProductCatalog(
+                new HashMapProductStorage());
+
     }
 
     private void assertListIsEmpty(List<Product> products) {
