@@ -54,12 +54,6 @@ public class ProductCatalog {
         return productStorage.loadById(productId);
     }
 
-    /*public List<Product> allPublishedProducts(){
-        return productStorage.values()
-                .stream()
-                .filter(product -> (Boolean) product.getIsOnline());
-                .collect(Collectors.toList());
-    }*/
     public List<Product> allPublishedProducts() {
         return productStorage.allPublishedProducts();
     }

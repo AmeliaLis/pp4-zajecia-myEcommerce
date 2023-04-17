@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 public class ProductCatalogTest {
     @Test
@@ -50,7 +49,7 @@ public class ProductCatalogTest {
 
         catalog.changePriceById(id, BigDecimal.valueOf(49.99));
 
-        assert catalog.loadById(id).getProductInfo().get("price").equals(BigDecimal.valueOf(49.99));
+        assert catalog.loadById(id).getPrice().equals(BigDecimal.valueOf(49.99));
     }
 
     @Test
