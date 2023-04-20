@@ -7,10 +7,12 @@ public class CreditCard {
     private BigDecimal limit;
     private String cardNumber;
     private int billingCycles;
+    private Boolean isAssigned;
 
     public CreditCard(String cardNumber){
         this.cardNumber=cardNumber;
         this.billingCycles=0;
+        this.isAssigned=false;
     }
     public void assignCredit(BigDecimal creditAmount) {
         this.balance = creditAmount;
@@ -25,10 +27,11 @@ public class CreditCard {
         }
 
         this.limit = creditAmount;
+        this.isAssigned = true;
     }
 
     private boolean isLimitAlreadyAssigned() {
-        return balance != null;
+        return isAssigned == true;
     }
     private boolean isCreditBelowThreshold(BigDecimal creditAmount){
         return creditAmount.compareTo(BigDecimal.valueOf(100)) < 0;//checking if the given creditAmount is lower than 100PLN, bc limit can't be lower than 100PLN

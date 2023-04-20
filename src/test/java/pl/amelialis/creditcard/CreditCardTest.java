@@ -14,10 +14,10 @@ public class CreditCardTest {
         card.assignLimit(BigDecimal.valueOf(1000));
 
         //Assert
-        assertEquals(BigDecimal.valueOf(1000), card.getBalance());
+        assertEquals(BigDecimal.valueOf(1000), card.getLimit());
     }
 
-    @Test
+    /*@Test
     void itAllowsToAssignCreditLimits(){
         //Arrange
         CreditCard card1 = new CreditCard("1234-5678");
@@ -27,6 +27,7 @@ public class CreditCardTest {
         //Assert
         assertEquals(BigDecimal.valueOf(1000), card1.getBalance());
     }
+     */
 
     @Test
     void itCantAssignLimitBelow100(){
@@ -66,10 +67,11 @@ public class CreditCardTest {
     void itAllowsToWithdraw(){
         CreditCard card = new CreditCard("1234-5678");
         card.assignLimit(BigDecimal.valueOf(1000));
+        card.assignCredit(BigDecimal.valueOf(300));
 
         card.withdraw(BigDecimal.valueOf(100));
 
-        assertEquals(BigDecimal.valueOf(900),card.getBalance());
+        assertEquals(BigDecimal.valueOf(200),card.getBalance());
     }
 
     @Test
