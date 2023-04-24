@@ -33,9 +33,9 @@ public class Product {
         return uuid;
     }
 
-    public UUID getUUID(){
-        return UUID.fromString(uuid);
-    }
+    //public UUID getUUID(){
+      //  return UUID.fromString(uuid);
+    //}
 
     public void setPrice(BigDecimal price){
         this.price=price;
@@ -56,8 +56,15 @@ public class Product {
         this.isOnline = isPublished;
     }
 
+    public String getName() {
+        return name;
+    }
 
-    public Map<String,Object> getProductInfo() {
+    public String getDescription() {
+        return description;
+    }
+
+    Map<String,Object> getProductInfo() {
         Map<String, Object> productInfo = new HashMap<>();
         productInfo.put("uuid", this.uuid);
         productInfo.put("name", this.name);
@@ -71,4 +78,5 @@ public class Product {
 
         return productInfo;
     }
+
 }

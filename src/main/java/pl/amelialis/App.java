@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import pl.amelialis.productcatalog.HashMapProductStorage;
 import pl.amelialis.productcatalog.ProductCatalog;
 
+import java.math.BigDecimal;
+
 @SpringBootApplication
 public class App {
     public static void main(String[] args){
@@ -16,6 +18,18 @@ public class App {
     @Bean
     ProductCatalog createProductCatalog(){
         ProductCatalog productCatalog = new ProductCatalog(new HashMapProductStorage());
+
+        String product1=productCatalog.addProduct("piesek","piesek","brown","fluffy","big");
+        productCatalog.changeImageById(product1,"resources/blik.jpg");
+        productCatalog.changePriceById(product1, BigDecimal.valueOf(20.20));
+        productCatalog.publishProduct(product1);
+
+        String product2=productCatalog.addProduct("inny piesek","piesek","yellow","fluffy","big");
+        productCatalog.changeImageById(product2,"resources/blik1.jpg");
+        productCatalog.changePriceById(product2, BigDecimal.valueOf(21.20));
+        productCatalog.publishProduct(product2);
+
+
         return productCatalog;
     }
 }
