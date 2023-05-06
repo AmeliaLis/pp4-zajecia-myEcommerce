@@ -1,4 +1,73 @@
+* {
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+}
 body {
-    background: #fff;
-    color: blue;
+    color: black;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+nav {
+    background: #FBC9D0;
+    width: 100%;
+    height: 100px;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3vw;
+    display: flex;
+    align-items: center;
+    flex-direction: unset;
+}
+
+main {
+    min-height: 100vh;
+}
+
+footer {
+    background: #FBC9D0;
+    width: 100%;
+    height: 300px;
+}
+
+.higher-footer {
+    height: 240px;
+    background: #FFEBE2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-content: space-evenly;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+.lower-footer {
+    height: 60px;
+}
+
+.lower-footer-p {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 60px;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+.logo {
+    width: auto;
+    height: auto;
+    margin: 0 2%;
+}
+.description {
+    box-sizing: content-box;
+    max-width: 45vh;
+}
+
+.dogo-picture {
+    width: 50%;
 }

@@ -17,8 +17,16 @@ public class ProductCatalogHTTPTest {
 
     @Test
     void itLoadsIndex(){
-        var url= String.format("http:/localhost:%s", port);
+        String url= String.format("http://localhost:%s", port);
         ResponseEntity<String> response = http.getForEntity(url, String.class);
+
+        assert response.getStatusCode().equals(HttpStatus.OK);
+    }
+
+    @Test
+    void itLoadsProducts(){
+        var url = String.format("http://localhost:%s/api/products", port);
+        ResponseEntity<String> response = http.getForEntity(url,String.class);
 
         assert response.getStatusCode().equals(HttpStatus.OK);
     }
