@@ -1,4 +1,4 @@
-package pl.amelialis;
+package pl.amelialis.playground;
 
 import java.util.List;
 
