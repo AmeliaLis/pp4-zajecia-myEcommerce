@@ -2,6 +2,8 @@ package pl.amelialis.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.amelialis.productcatalog.HashMapProductStorage;
+import pl.amelialis.productcatalog.ProductCatalog;
 
 import java.util.UUID;
 
@@ -21,7 +23,6 @@ public class CollectingProductsTest {
         Sales sales = thereIsSalesModule();
         String productId = thereIsProduct();
         String customerId = thereIsCustomer("AMI");
-
         //Act
         sales.addToCart(customerId,productId);
 

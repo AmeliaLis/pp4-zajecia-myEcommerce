@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.amelialis.productcatalog.HashMapProductStorage;
 import pl.amelialis.productcatalog.ProductCatalog;
+import pl.amelialis.sales.CartStorage;
+import pl.amelialis.sales.ProductDetailsProvider;
+import pl.amelialis.sales.Sales;
 
 import java.math.BigDecimal;
 
@@ -31,5 +34,10 @@ public class App {
 
 
         return productCatalog;
+    }
+
+    @Bean
+    Sales createSales() {
+        return new Sales(new CartStorage(), new ProductDetailsProvider());
     }
 }
