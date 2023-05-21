@@ -1,8 +1,3 @@
-(() => {
-    console.log("It works!")
-})();
-
-
 const getProducts = () => {
     return fetch("/api/products")
         .then(response => response.json())
@@ -31,6 +26,7 @@ const createProductComponent = (product) =>{
         <button 
             class="product__add-to-cart"
             data-product-id="${product.id}"
+            onclick="addToCart(${product.id})"
         >Add to cart</button>
     </li>
     `;
