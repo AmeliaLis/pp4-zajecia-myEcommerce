@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Cart {
-    Map<String,ProductDetails> products;
+    Map<ProductDetailsProvider,Integer> products;
 
     public Cart() {
         this.products = new HashMap<>();
@@ -15,9 +15,8 @@ public class Cart {
         return new Cart();
     }
 
-    public void add(ProductDetails product) {
-        product.increaseQuantity();
-        products.put(product.getProductId(), product);
+    public void add(ProductDetailsProvider product) {
+        products.put(product, 1);
     }
 
     public int itemsCount() {

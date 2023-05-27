@@ -13,7 +13,7 @@ public class Sales {
         Cart customersCart = loadForCustomer(customerId)
                 .orElse(Cart.empty());
 
-        ProductDetails product = getProductDetails(productId)
+        ProductDetailsProvider product = getProductDetails(productId)
                 .orElseThrow(() -> new NoSuchProductException());
 
         customersCart.add(product);
@@ -21,7 +21,7 @@ public class Sales {
         cartStorage.save(customerId,customersCart);
     }
 
-    private Optional<ProductDetails> getProductDetails(String productId) {
+    private Optional<ProductDetailsProvider> getProductDetails(String productId) {
         return productDetailsProvider.loadCartForProduct(productId);
     }
 
