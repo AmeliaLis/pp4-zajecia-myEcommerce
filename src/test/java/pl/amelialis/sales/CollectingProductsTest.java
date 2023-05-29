@@ -2,8 +2,6 @@ package pl.amelialis.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.amelialis.productcatalog.HashMapProductStorage;
-import pl.amelialis.productcatalog.ProductCatalog;
 
 import java.util.UUID;
 
@@ -14,7 +12,7 @@ public class CollectingProductsTest {
     @BeforeEach
     void setUp(){
         cartStorage = new CartStorage();
-        productDetailsProvider = new ProductDetailsProvider();
+        productDetailsProvider = new AlwaysMissingProductDetailsProvider();
     }
 
     @Test
@@ -28,6 +26,18 @@ public class CollectingProductsTest {
 
         //Assert
         assertThereIsXProductsInCustomersCart(customerId,1);
+    }
+
+    @Test
+    void itAllowsToAddMultipleOfTheSameTypeProductsToCart(){
+        Sales sales = thereIsSalesModule();
+        String productId = thereIsProduct();
+        String customerId = thereIsCustomer("AMI");
+
+        sales.addToCart(customerId,productId);
+        sales.addToCart(customerId,productId);
+
+        assertThereIsXProductsInCustomersCart(customerId,2);
     }
 
     private void assertThereIsXProductsInCustomersCart(String customerId, int productsCount) {

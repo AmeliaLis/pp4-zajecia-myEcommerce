@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import pl.amelialis.productcatalog.HashMapProductStorage;
 import pl.amelialis.productcatalog.ProductCatalog;
 import pl.amelialis.sales.CartStorage;
+import pl.amelialis.sales.ProductCatalogDetailsProvider;
 import pl.amelialis.sales.ProductDetailsProvider;
 import pl.amelialis.sales.Sales;
 
@@ -37,7 +38,9 @@ public class App {
     }
 
     @Bean
-    Sales createSales() {
-        return new Sales(new CartStorage(), new ProductDetailsProvider());
+    Sales createSales(ProductCatalog catalog) {
+        return new Sales(
+                new CartStorage(),
+                new ProductCatalogDetailsProvider(catalog));
     }
 }

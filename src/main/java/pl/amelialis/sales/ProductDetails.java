@@ -3,18 +3,14 @@ package pl.amelialis.sales;
 import java.math.BigDecimal;
 
 public class ProductDetails {
-    private String productId;
-    private String name;
-    private BigDecimal price;
-    private String desc;
+    private final String productId;
+    private final String name;
+    private final BigDecimal price;
 
-
-
-    public ProductDetails(String productId, String name, BigDecimal price, String desc) {
+    public ProductDetails(String productId, String name, BigDecimal price) {
         this.productId=productId;
         this.name=name;
         this.price=price;
-        this.desc = desc;
     }
 
     public String getProductId() {
@@ -27,24 +23,5 @@ public class ProductDetails {
 
     public BigDecimal getPrice() {
         return price;
-    }
-    public String getDescription() {
-        return desc;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 }

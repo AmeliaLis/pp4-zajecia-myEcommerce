@@ -13,7 +13,7 @@ public class Sales {
         Cart customersCart = loadForCustomer(customerId)
                 .orElse(Cart.empty());
 
-        ProductDetailsProvider product = getProductDetails(productId)
+        ProductDetails product = getProductDetails(productId)
                 .orElseThrow(() -> new NoSuchProductException());
 
         customersCart.add(product);
@@ -21,8 +21,8 @@ public class Sales {
         cartStorage.save(customerId,customersCart);
     }
 
-    private Optional<ProductDetailsProvider> getProductDetails(String productId) {
-        return productDetailsProvider.loadCartForProduct(productId);
+    private Optional<ProductDetails> getProductDetails(String productId) {
+        return productDetailsProvider.loadForProduct(productId);
     }
 
     private Optional<Cart> loadForCustomer(String customerId) {
@@ -31,5 +31,11 @@ public class Sales {
 
     public Offer getCurrentOffer(String customer) {
         return new Offer();
+    }
+
+    public PaymentData acceptOffer(String customerId) {
+        Offer offer = getCurrentOffer(customerId);
+
+        Reservation reservation =
     }
 }
