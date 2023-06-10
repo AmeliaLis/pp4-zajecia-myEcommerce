@@ -1,4 +1,6 @@
-package pl.amelialis.sales;
+package pl.amelialis.sales.productdetails;
+
+import pl.amelialis.sales.ProductDetails;
 
 import java.util.Optional;
 

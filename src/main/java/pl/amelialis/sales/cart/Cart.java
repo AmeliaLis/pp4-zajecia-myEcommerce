@@ -1,8 +1,7 @@
-package pl.amelialis.sales;
+package pl.amelialis.sales.cart;
 
-import pl.amelialis.productcatalog.Product;
+import pl.amelialis.sales.ProductDetails;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 public class Cart {

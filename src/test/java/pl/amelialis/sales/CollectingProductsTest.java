@@ -2,6 +2,10 @@ package pl.amelialis.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.amelialis.sales.cart.Cart;
+import pl.amelialis.sales.cart.CartStorage;
+import pl.amelialis.sales.cart.Sales;
+import pl.amelialis.sales.productdetails.ProductDetailsProvider;
 
 import java.util.UUID;
 

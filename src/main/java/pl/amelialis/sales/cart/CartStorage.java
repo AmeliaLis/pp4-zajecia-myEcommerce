@@ -1,4 +1,6 @@
-package pl.amelialis.sales;
+package pl.amelialis.sales.cart;
+
+import pl.amelialis.sales.cart.Cart;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package pl.amelialis.sales;
+package pl.amelialis.sales.offering;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

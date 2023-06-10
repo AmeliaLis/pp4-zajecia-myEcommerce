@@ -1,5 +1,7 @@
 package pl.amelialis.sales;
 
+import pl.amelialis.sales.productdetails.ProductDetailsProvider;
+
 import java.util.Optional;
 
 public class AlwaysMissingProductDetailsProvider implements ProductDetailsProvider {
