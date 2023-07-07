@@ -2,8 +2,6 @@ package pl.amelialis.sales.productdetails;
 
 import pl.amelialis.productcatalog.Product;
 import pl.amelialis.productcatalog.ProductCatalog;
-import pl.amelialis.sales.ProductDetails;
-import pl.amelialis.sales.productdetails.ProductDetailsProvider;
 
 import java.util.Optional;
 

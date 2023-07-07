@@ -5,17 +5,19 @@ import pl.amelialis.sales.cart.Cart;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CartStorage {
-    Map<String, Cart> carts;
+    private final Map<String, Cart> carts;
+
     public CartStorage() {
-        this.carts = new HashMap<>();
+        carts = new ConcurrentHashMap<>();
     }
     public Optional<Cart> load(String customerId) {
         return Optional.ofNullable(carts.get(customerId));
     }
 
-    public void save(String customerId, Cart customersCart) {
-        carts.put(customerId,customersCart);
+    public void addForCustomer(String customerId, Cart cart) {
+        carts.put(customerId, cart);
     }
 }

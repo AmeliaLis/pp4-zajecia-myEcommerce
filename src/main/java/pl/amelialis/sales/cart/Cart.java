@@ -1,49 +1,53 @@
 package pl.amelialis.sales.cart;
 
-import pl.amelialis.sales.ProductDetails;
-
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Cart {
-     List<String> products;
+
+    private final HashMap<String, Integer> productsQuantities;
 
     public Cart() {
-        this.products = new ArrayList<String>();
+        productsQuantities = new HashMap<>();
     }
-    public static Cart empty(){
+
+    public static Cart empty() {
         return new Cart();
     }
 
-    public void add(ProductDetails product) {
-        products.add(product.getProductId());
-    }
-
-    public int itemsCount(){
-        return products.size();
-    }
-    /*
-    public int itemsCount() {
-        int totalNumberOfProducts = 0;
-        for (int amountOfOneProduct : products.values()){
-            totalNumberOfProducts += amountOfOneProduct;
+    public void add(String product) {
+        if (!isInCart(product)) {
+            putIntoCart(product);
+        } else {
+            increaseProductQuantity(product);
         }
-
-        return totalNumberOfProducts;
     }
 
-    public BigDecimal calculateOffer() {
-        BigDecimal totalPrice = BigDecimal.ZERO;
-
-        for (ProductDetailsProvider product : products.keySet()){
-            BigDecimal totalAmountOfOneProduct = BigDecimal.valueOf(products.get(product));
-            BigDecimal priceOfTotalAmountOfOneProduct = product
-                    .loadPrice()
-                    .multiply(totalAmountOfOneProduct)
-                    .subtract(totalAmountOfOneProduct.divideToIntegralValue(BigDecimal.valueOf(5))).multiply(product.loadPrice());
-            totalPrice.add(priceOfTotalAmountOfOneProduct);
-        }
-        return totalPrice;
+    public boolean isEmpty() {
+        return productsQuantities.values().isEmpty();
     }
 
-     */
+    public int getItemsCount() {
+        return productsQuantities.values().size();
+    }
+
+    public List<CartItem> getCartItems() {
+        return productsQuantities
+                .entrySet()
+                .stream()
+                .map(es -> new CartItem(es.getKey(), es.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    private void putIntoCart(String product) {
+        productsQuantities.put(product, 1);
+    }
+
+    private void increaseProductQuantity(String product) {
+        productsQuantities.put(product, productsQuantities.get(product) + 1);
+    }
+
+    private boolean isInCart(String product) {
+        return productsQuantities.containsKey(product);
+    }
 }

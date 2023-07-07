@@ -16,13 +16,8 @@ public class ProductCatalog {
         return productStorage.allProducts();
     }
 
-    public ArrayList<Product> loadDatabase(){
-        ArrayList<Product> database = new ArrayList<Product>();
-        return database;
-    }
-
     //Seller -> Add product
-    public String addProduct(String name,String description, String color, String type,String size){
+    public String addProduct(String name,String description, String color, String type, String size){
         Product newProduct = new Product(
                 UUID.randomUUID(),
                 name,
@@ -45,17 +40,8 @@ public class ProductCatalog {
         loadById(id).setImage(image);
     }
 
-    //ERP -> Publish product
-    public void changeVisibilityById(String id,Boolean isPublished){
-        loadById(id).setIsPublished(isPublished);
-    }
-
     public Product loadById(String productId) {
         return productStorage.loadById(productId);
-    }
-
-    public List<Product> allPublishedProducts() {
-        return productStorage.allPublishedProducts();
     }
 
     public void publishProduct(String productId) {
@@ -69,5 +55,8 @@ public class ProductCatalog {
         }
 
         loaded.setIsOnline(true);
+    }
+    public List<Product> allPublishedProducts() {
+        return productStorage.allPublishedProducts();
     }
 }

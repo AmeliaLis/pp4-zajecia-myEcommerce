@@ -7,26 +7,24 @@ import java.util.List;
 import pl.amelialis.productcatalog.Product;
 
 public class Offer {
-    BigDecimal total;
-    List<Product> items;
-    Integer itemsCount;
 
-    public Offer() {
-        this.total = BigDecimal.ZERO;
-        this.itemsCount = 0;
-        this.items = new ArrayList<>();
-    }
+    private final List<OfferLine> lines;
+    private final BigDecimal total;
 
-    public Offer(BigDecimal total, int size) {
+    public Offer(List<OfferLine> lines, BigDecimal total) {
+        this.lines = lines;
         this.total = total;
-        this.itemsCount = size;
     }
 
     public BigDecimal getTotal() {
         return total;
     }
 
-    public Integer getItemsCount() {
-        return itemsCount;
+    public Integer getProductsCount() {
+        return lines.size();
+    }
+
+    public List<OfferLine> getOrderLines() {
+        return lines;
     }
 }

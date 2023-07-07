@@ -96,7 +96,7 @@ public class ProductCatalogTest {
         String id = catalog.addProduct("Miś uszatek",
                 "fluffy bear", "brown","bear","big");
 
-        assertThrows(ProductCantBePublishedException.class,() -> catalog.changeVisibilityById(id,true));
+        assertThrows(ProductCantBePublishedException.class,() -> catalog.publishProduct(id));
     }
 
     private ProductCatalog thereIsProductCatalog() {

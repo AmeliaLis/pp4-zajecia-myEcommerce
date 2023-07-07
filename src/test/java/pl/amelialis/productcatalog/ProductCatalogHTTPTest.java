@@ -8,7 +8,9 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(
+        webEnvironment =
+                SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductCatalogHTTPTest {
     @LocalServerPort
     int port;
@@ -16,17 +18,14 @@ public class ProductCatalogHTTPTest {
     TestRestTemplate http;
 
     @Test
-    void itLoadsIndex(){
-        String url= String.format("http://localhost:%s", port);
-        ResponseEntity<String> response = http.getForEntity(url, String.class);
+    void itShowsDefaultProducts() {
+        String url = String.format(
+                "http://localhost:%s/api/products",
+                this.port
+        );
 
-        assert response.getStatusCode().equals(HttpStatus.OK);
-    }
-
-    @Test
-    void itLoadsProducts(){
-        var url = String.format("http://localhost:%s/api/products", port);
-        ResponseEntity<String> response = http.getForEntity(url,String.class);
+        ResponseEntity<Product[]> response =
+                http.getForEntity(url, Product[].class);
 
         assert response.getStatusCode().equals(HttpStatus.OK);
     }

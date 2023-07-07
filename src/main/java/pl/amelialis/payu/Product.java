@@ -14,6 +14,11 @@ public class Product {
 
     public Product() {
     }
+    public Product(String name, Integer unitPrice, Integer quantity) {
+        this.name = name;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+    }
 
     public String getName() {
         return name;

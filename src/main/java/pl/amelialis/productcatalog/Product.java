@@ -33,9 +33,9 @@ public class Product {
         return uuid;
     }
 
-    //public UUID getUUID(){
-      //  return UUID.fromString(uuid);
-    //}
+    public UUID getUUID(){
+        return UUID.fromString(uuid);
+    }
 
     public void setPrice(BigDecimal price){
         this.price=price;
@@ -49,12 +49,6 @@ public class Product {
     public void setIsOnline(boolean online){this.isOnline=online;}
     public boolean getIsOnline(){return this.isOnline;}
 
-    public void setIsPublished(Boolean isPublished){
-        if (this.image == null || this.price == null){
-            throw new ProductCantBePublishedException();
-        }
-        this.isOnline = isPublished;
-    }
 
     public String getName() {
         return name;
@@ -63,20 +57,4 @@ public class Product {
     public String getDescription() {
         return description;
     }
-
-    Map<String,Object> getProductInfo() {
-        Map<String, Object> productInfo = new HashMap<>();
-        productInfo.put("uuid", this.uuid);
-        productInfo.put("name", this.name);
-        productInfo.put("desc", this.description);
-        productInfo.put("image", this.image);
-        productInfo.put("isOnline", this.isOnline);
-        productInfo.put("price", this.price);
-        productInfo.put("color", this.color);
-        productInfo.put("type", this.type);
-        productInfo.put("size", this.size);
-
-        return productInfo;
-    }
-
 }
