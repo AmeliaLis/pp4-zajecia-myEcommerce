@@ -110,3 +110,19 @@ button:hover {
     background-color: #B0C4B1;
     color: black;
 }
+
+.product__image {
+    height: 200px;
+    width: 200px;
+}
+
+.offer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 2%;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    gap: 16px;
+}

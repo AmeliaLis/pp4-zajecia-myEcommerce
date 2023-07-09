@@ -33,12 +33,12 @@ public class App {
         ProductCatalog productCatalog = new ProductCatalog(new HashMapProductStorage());
 
         String product1=productCatalog.addProduct("piesek","piesek","brown","fluffy","big");
-        productCatalog.changeImageById(product1,"resources/blik.jpg");
+        productCatalog.changeImageById(product1,"/images/blik.jpg");
         productCatalog.changePriceById(product1, BigDecimal.valueOf(20.20));
         productCatalog.publishProduct(product1);
 
         String product2=productCatalog.addProduct("inny piesek","piesek","yellow","fluffy","big");
-        productCatalog.changeImageById(product2,"resources/blik1.jpg");
+        productCatalog.changeImageById(product2,"/images/blik1.jpg");
         productCatalog.changePriceById(product2, BigDecimal.valueOf(21.20));
         productCatalog.publishProduct(product2);
 
