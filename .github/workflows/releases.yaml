@@ -18,8 +18,8 @@ jobs:
           distribution: 'temurin'
           architecture: x64
       - 
-        name: try to compile
-        run: mvn compile
+        name: run echo
+        run: echo "test"
       - 
         name: run my tests
         run: mvn test
